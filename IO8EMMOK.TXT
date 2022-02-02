@@ -1,0 +1,60 @@
+IO8EMMOK.SYS
+By Dr. Pu-Feng Du
+Jan. 15th, 2022
+-------------------------------------
+IO8EMMOK is a driver for MS-DOS 8.00. It only works for this special version.
+It has only one purpose. Allow MS-DOS 8.00 to load EMM386.EXE as normal.
+
+DO NOT TRY TO USE IT FOR ANY OTHER PURPOSE.
+
+This driver cannot help in starting Win3xx in 386 enhanced mode.
+
+It is implemented in a very quick and dirty way. A lot of codes were borrowed
+from the HIMEMX.EXE source codes.
+
+THIS DRIVER MUST BE THE FIRST TO LOAD IN YOUR CONFIG.SYS
+
+Put this driver in your DOS directory. e.g. C:\DOS.
+
+Add the following line as the FIRST LINE in your config.sys
+
+DEVICE=C:\DOS\IO8EMMOK.SYS
+
+Followed by:
+...
+...
+DEVICE=C:\DOS\EMM386.EXE RAM ALTBOOT
+
+Reboot your system.
+
+Note: The ALTBOOT parameter of EMM386.EXE is a MUST. The other paramters can
+be changed. There is no paramter to IO8EMMOK.SYS
+
+Tech notes
+-------------------------------------
+IO8EMMOK only RE-Hooks int 15h AH=87H/88H and AX=E801H
+
+The hang of EMM386.EXE when loading in the config.sys of MS-DOS 8.00 is caused
+by the built-in XMS driver. That driver hooked BIOS int 15H AH=87H to hang the
+system. This is BY DESIGN of the MS-DOS 8.00. Because MS-DOS 8.00 has a built-
+in XMS driver, which will be activated and moved to HMA along with DOS kernel
+services before the processing of CONFIG.SYS, any driver attempt to turn off
+A20 or release HMA will destroy the XMS driver and DOS kernel services. As MS-
+DOS 8.00 is designed particularly to boot Windows ME, its only mission is to
+allow the loading of all VxDs and let the system entering protected mode, where
+Windows kernel will take over the control. However, real-mode patches for MS-
+DOS 8.00 has been released by hackers for many years. To recover real mode of
+MS-DOS 8.00, this design must be fixed. Patches for fixing this has already been
+released recently. This driver is NOT the patch. It only allows you to load
+EMM386.EXE without the patch. This is useful if your problem is not runnning
+Win3xx in 386 mode, but simply needing EMM386.EXE. If you want to run Win3xx
+in 386 mode, search and use the patch to disable the MS-DOS 8.00 built-in XMS
+driver.
+
+-------------------------------------------
+This driver is provided for free, under GNU GPL v2 Licence.
+
+
+
+
+
