@@ -24,3 +24,6 @@ DEVICE=C:\DOS\EMM386 [ANY PARAMETERS] ALTBOOT
 
 Without the IO8EMMOK, MS-DOS 8.00 will hang when loading EMM386.EXE. 
 Now, reboot your system. The system will not hang again. Enjoy.
+
+# Compile
+Use MASM 6.15 to compile the source code.
