@@ -1,0 +1,26 @@
+# IO8EMMOK
+A driver to allow loading of EMM386.EXE in MS-DOS 8.00 real mode
+
+_THIS DRIVER IS DESIGNED ONLY FOR MS-DOS 8.00, NOT OTHERS._
+
+# Condition
+
+- MS-DOS 8.00 real mode
+- KBC (8042) / "Normal" A20 Gate control
+
+# Install
+Add the following line as the FIRST line in your config.sys
+
+```
+DEVICE=C:\DOS\IO8EMMOK.SYS
+```
+
+You may load your EMM386.EXE after the above line, with any parameter. But ALTBOOT parameter must be added.
+e.g.
+
+```
+DEVICE=C:\DOS\EMM386 [ANY PARAMETERS] ALTBOOT
+```
+
+Without the IO8EMMOK, MS-DOS 8.00 will hang when loading EMM386.EXE. 
+Now, reboot your system. The system will not hang again. Enjoy.
