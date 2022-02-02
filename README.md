@@ -27,7 +27,7 @@ You may load your EMM386.EXE after the above line, with any parameter. But ALTBO
 e.g.
 
 ```
-DEVICE=C:\DOS\EMM386 [ANY PARAMETERS] ALTBOOT
+DEVICE=C:\DOS\EMM386.EXE [ANY PARAMETERS] ALTBOOT
 ```
 
 Without the IO8EMMOK, MS-DOS 8.00 will hang when loading EMM386.EXE. 
