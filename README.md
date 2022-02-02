@@ -7,7 +7,7 @@ _THIS DRIVER IS DESIGNED ONLY FOR MS-DOS 8.00, NOT OTHERS._
 
 - MS-DOS 8.00 real mode
 - KBC (8042) / "Normal" A20 Gate control
-- Follow GNU GPL v2 
+- Follow GNU GPL v2 license
 
 # Install
 Put IO8EMMOK.SYS in your DOS directory
