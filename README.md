@@ -9,6 +9,11 @@ _THIS DRIVER IS DESIGNED ONLY FOR MS-DOS 8.00, NOT OTHERS._
 - KBC (8042) / "Normal" A20 Gate control
 
 # Install
+Enable the real-mode DOS. Use any patch for that purpose.
+
+DO NOT apply patch in this thread.
+https://msfn.org/board/topic/183250-how-to-disable-the-built-in-xms-driver-in-windows-mes-iosys
+
 Add the following line as the FIRST line in your config.sys
 
 ```
