@@ -35,3 +35,9 @@ Now, reboot your system. The system will not hang again. Enjoy.
 
 # Compile
 Use MASM 6.15 to compile the source code.
+
+# Note
+ - __READ__ the source code comments to get more information, regarding how and why this program works, how this program is design and implemented, and copyright information.
+ - Branch 1.2 can load Windows 3.xx in enhanced mode, with W3XStart patch.
+ - The W3XStart.BAT is a hotfix patch in a batch file. It modify memory, not the file. No need to decompress IO.SYS. Call this patch bat file properly in your AUTOEXEC.BAT
+ - Please cite or reference thses programs with the author's title and name: Dr. Pu-Feng Du, a Chinese citizen.
