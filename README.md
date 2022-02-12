@@ -36,6 +36,9 @@ Now, reboot your system. The system will not hang again. Enjoy.
 # Compile
 Use MASM 6.15 to compile the source code.
 
+# Known Issue
+ - Second 8259A will be disabled. No IRQ 9-15.
+ 
 # Note
  - __READ__ the source code comments to get more information, regarding how and why this program works, how this program is design and implemented, and copyright information.
  - Branch 1.2 can load Windows 3.xx in enhanced mode, with W3XStart patch.
