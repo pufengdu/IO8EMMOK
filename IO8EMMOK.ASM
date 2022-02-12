@@ -2,7 +2,7 @@
 ; IO8EMMOK - A driver for fixing EMM386.EXE loading in
 ; MS-DOS 8.0. (a.k.a. Windows ME Real-Mode DOS)
 ;
-; Copyright(C) 2022 Pu-Feng Du, Ph. D.
+; Copyright(C) 2022 Pu-Feng Du.
 ;
 ; LICENSE:
 ;  IO8EMMOK is free software: you can redistribute it
@@ -36,10 +36,9 @@
 ;
 ;     DEVICE=C:\DOS\IO8EMMOK.SYS
 ;
-;  After this line, you can load EMM386.EXE as normal,
-;  with only one exception: the ALTBOOT option MUST be
-;  appended to your EMM386.EXE device directive to allow
-;  quickboot broadcasting.
+;  After this line, you can load EMM386.EXE as normal, like
+;
+;     DEVICE=C:\DOS\EMM386.EXE [any parameter you need]
 ;
 ;  Note:
 ;  1. IO8EMMOK.SYS is known to be compatible with the
@@ -68,19 +67,19 @@ include dos.inc
 
 ; Data structure definition of DOS driver request header
 rh      struct          1t
-        rh_len          db ?
-        rh_unit         db ?
-        rh_cmd          db ?
-        rh_status       dw ?
-        rh_res          db 8 dup(?)
-        rh_media        db ?
-        rh_xfer         dw ?
-        rh_xseg         dw ?
+        rh_len          db      ?
+        rh_unit         db      ?
+        rh_cmd          db      ?
+        rh_status       dw      ?
+        rh_res          db      8       dup(?)
+        rh_media        db      ?
+        rh_xfer         dw      ?
+        rh_xseg         dw      ?
         union
-                rh_xcount       dw ?    
-                rh_conf_offset  dw ?    
+                rh_cnt  dw      ?    
+                rh_conf dw      ?    
         ends                            
-        rh_config_seg   dw ?             
+        rh_config_seg   dw      ?             
 rh  ends
 
 ; .SYS format requirement, begin with offset 0H
@@ -95,7 +94,6 @@ interrupt       dw      intrp
 dev_name        db      'IO8EMMX$'
 
 ; Data area for the driver
-vars:
 bios_i15h       dd      0
 i2fh            dd      0
 xms_off         dw      0
@@ -127,7 +125,7 @@ intrp   proc    far
         call    seti2fh
 
         ; Set memory cut point, return to system
-        mov     ax, offset drv_end_addr
+        mov     ax, drv_end_addr
         mov     es:[di].rh_xfer, ax
         mov     es:[di].rh_xseg, cs
         mov     ax, 0100h
@@ -151,7 +149,6 @@ AXE801H:
 
 AH88H:
         xor     ax, ax
-        sti
         iret
 
 AH87H:
@@ -159,23 +156,19 @@ AH87H:
         jz      DIS_A20_CALL
         call    i15stub                         ;In segment stub for far call
         call    set_a20_on                      ;Force A20 to turn on
-        sti
-        iret                                    ;This is interrupt handler
+        retf 2
 
 DIS_A20_CALL:
         call    i15stub
         call    set_a20_off
-        sti
-        iret
+        retf 2
 
 FWRD:
         call    i15stub
-        sti
-        iret
+        retf 2
 i15srv  endp
 
 i15stub proc    near
-        cli
         pop     cs:t_rtoff                      ;Temporaty store return IP
         pushf                                   ;Creat a stack for iret
         push    cs
@@ -202,7 +195,6 @@ xms_handle:
         pop     ax
         iret
 i2fsrv  endp
-
 
 xmsdrv  proc    far                             ;Our wrapping XMS driver
         jmp     drvbegin                        ;Following XMS 3.0 Standard
@@ -311,7 +303,7 @@ set_a20_off proc near
         ret
 set_a20_off endp
 
-drv_end_addr    db  0                           ;Cutoff point after init
+drv_end_addr:                                   ;Cutoff point after init
 
 ; We can cutoff from here
 findi15ent proc near
@@ -347,7 +339,7 @@ findi15ent proc near
         ; The BIOS int 15 vector is stored just before the entrance
         ; of int 2fh. This driver must be the first in config.sys
         ; as other program would overwrite int 2f to change this behavior
-        ; never try this after loading command.com
+        ; never try this after command.com
 
         ; Reload address of int 2fH ivec into DS:SI
         mov     si, ax
@@ -424,7 +416,7 @@ mkchar:
         ret
 axdisp  endp
 
-seti15h proc    near                            ;Install 15H handler
+seti15h proc    near                            ;Install I15H handler
         cli
         push    ds
         push    eax
@@ -455,5 +447,6 @@ seti2fh proc    near                            ;Install 2FH handler
         sti
         ret
 seti2fh endp
+
 end                                             ;All program end here.
 
