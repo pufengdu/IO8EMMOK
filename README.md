@@ -7,7 +7,7 @@ Version 1.3
 
 It will allow your to do this:
 
-![Enhanced Windows 3.xx](https://github.com/pufengdu/IO8EMMOK/blob/1.3/screenshot.png?raw=true)
+![Enhanced Windows 3.xx](https://github.com/pufengdu/IO8EMMOK/blob/1.3/screenshot.png?raw=true | width=800)
 
 # Condition
 
