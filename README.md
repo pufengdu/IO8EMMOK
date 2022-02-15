@@ -5,6 +5,10 @@ _THIS DRIVER IS DESIGNED ONLY FOR MS-DOS 8.00, NOT OTHERS._
 
 Version 1.3
 
+It will allow your to do this:
+
+![Enhanced Windows 3.xx](https://github.com/pufengdu/IO8EMMOK/blob/1.3/screenshot.png?raw=true)
+
 # Condition
 
 - MS-DOS 8.00 real mode
