@@ -5,7 +5,7 @@ _THIS DRIVER IS DESIGNED ONLY FOR MS-DOS 8.00, NOT OTHERS._
 
 Version 1.3
 
-It will allow your to do this:
+It will allow your to do this. Do NOT waste your time trying to use QEMM386 / 386MAX to get similar things done. They do not work in MS-DOS 8.0.
 
 ![Enhanced Windows 3.xx](https://github.com/pufengdu/IO8EMMOK/blob/1.3/screenshot.png?raw=true)
 
