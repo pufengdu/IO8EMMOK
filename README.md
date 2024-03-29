@@ -65,6 +65,12 @@ Replace
  
  There will be two replacements, together.
 
+ # Supplementary Notes
+
+- Try to use the EMM386.EXE that comes with WFWG or PC-DOS 2000. They are really good.
+
+- DO NOT load high IO8EMMOK.SYS or W3XSTART.COM
+
  # Further reading
 
  You may be interested in this repo: https://github.com/pufengdu/RetroFuns 
