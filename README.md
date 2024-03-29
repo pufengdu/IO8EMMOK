@@ -67,7 +67,7 @@ Replace
 
  # Supplementary Notes
 
-- Try to use the EMM386.EXE that comes with WFWG or PC-DOS 2000. They are really good.
+- Try to use the EMM386.EXE that comes with [WFWG](https://winworldpc.com/product/windows-3/wfw-311) or [PC-DOS 2000](https://winworldpc.com/product/pc-dos/2000). They are really good.
 
 - DO NOT load high IO8EMMOK.SYS or W3XSTART.COM
 
