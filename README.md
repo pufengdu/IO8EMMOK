@@ -5,9 +5,15 @@ _THIS DRIVER IS DESIGNED ONLY FOR MS-DOS 8.00, NOT OTHERS._
 
 Version 1.3
 
-It will allow your to do this. Do NOT waste your time trying to use QEMM386 / 386MAX to get similar things done. They do not work in MS-DOS 8.0.
+# About running WFWG311
+
+Well, some more notes are needed here. Running WFWG311 should not need EMM. XMM only should be enough to let WFWG311 to start. WFWG311 has its own EMM, the 86mmgr.vxd. Therefore, it seems like that EMM386.EXE should not be a "must load first" component. However, this is not the case in MS-DOS 8.00. As I have stated as comments in the code, the XMM in IO.SYS always resides in HMA, which is different to all older versions. Even with the IO8EMMOK.SYS, it will not support loading WFWG311 directly using XMM, as IO8EMMOK.SYS does not consider loading WFWG311 system VMs. But...
+
+It will allow you to load WFWG311, if you have loaded EMM386.EXE before loading WFWG311. After loading EMM386.EXE, when WFWG311 is initializing, it imports global memroy map from EMM rather than XMM. See the below screenshot for WFWG311 running on MS-DOS 8.00.
 
 ![Enhanced Windows 3.xx](https://github.com/pufengdu/IO8EMMOK/blob/1.3/screenshot.png?raw=true)
+
+Note: Do NOT waste your time trying to use QEMM386 / 386MAX to get similar things done. They do not work in MS-DOS 8.0.
 
 # Condition
 
